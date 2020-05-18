@@ -1,0 +1,15 @@
+{
+  "name": "buidler-spdx-license-identifier",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ItsNickBarry/buidler-spdx-license-identifier",
+  "author": "Nick Barry",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "@nomiclabs/buidler": "^1.3.0"
+  },
+  "devDependencies": {
+    "@nomiclabs/buidler": "^1.3.0"
+  }
+}
