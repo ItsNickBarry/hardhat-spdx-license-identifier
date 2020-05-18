@@ -20,15 +20,18 @@ task(NAME, DESC, async function (args, bre) {
 
   let sources = await bre.run(TASK_COMPILE_GET_RESOLVED_SOURCES);
 
-  console.log(`Prepending SPDX License Identifier to ${ sources.length } sources: ${ spdx }`);
-
   let headerBase = '// SPDX-License-Identifier:';
   let regexp = new RegExp(`(${ headerBase }.*\n*)?`);
   let header = `${ headerBase } ${ spdx }\n\n`;
 
+  let count = 0;
+
   sources.forEach(function ({ absolutePath, content }) {
     if (!content.startsWith(header)) {
       fs.writeFileSync(absolutePath, content.replace(regexp, header));
+      count++;
     }
   });
+
+  console.log(`Prepending SPDX License Identifier to ${ count } sources: ${ spdx }`);
 });
