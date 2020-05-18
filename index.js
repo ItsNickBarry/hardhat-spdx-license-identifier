@@ -20,7 +20,7 @@ task(NAME, DESC, async function (args, bre) {
 
   let sources = await bre.run(TASK_COMPILE_GET_RESOLVED_SOURCES);
 
-  console.log(`Appending SPDX License Identifier to ${ sources.length } sources: ${ spdx }`);
+  console.log(`Prepending SPDX License Identifier to ${ sources.length } sources: ${ spdx }`);
 
   let headerBase = '// SPDX-License-Identifier:';
   let regexp = new RegExp(`(${ headerBase }.*\n*)?`);
