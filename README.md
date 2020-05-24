@@ -16,6 +16,19 @@ Load plugin in Buidler config:
 usePlugin('buidler-spdx-license-identifier');
 ```
 
+Add configuration under the `spdxLicenseIdentifier` key:
+
+| option | description | default |
+|-|-|-|
+| `overwrite` | whether to overwrite existing SPDX license identifiers | `false` |
+| `runOnCompile` | whether to automatically prepend identifiers during compilation | `false` |
+
+```javascript
+spdxLicenseIdentifier: {
+  overwrite: true,
+  runOnCompile: true,
+}
+```
 Run the included Buidler task to modify local Solidity source files:
 
 ```bash
