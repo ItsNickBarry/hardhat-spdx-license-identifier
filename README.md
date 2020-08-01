@@ -8,7 +8,7 @@ Prepend Solidity source files in Buidler projects with the SPDX License Identifi
 yarn add --dev buidler-spdx-license-identifier
 ```
 
-### Usage
+## Usage
 
 Load plugin in Buidler config:
 
