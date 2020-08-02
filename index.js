@@ -14,7 +14,7 @@ const NAME = 'prepend-spdx-license';
 const DESC = 'Prepends SPDX License identifier to local source files';
 
 task(NAME, DESC, async function (args, bre) {
-  let config = bre.config.spdxLicenseIdentifier || CONFIG;
+  let config = Object.assign({}, CONFIG, bre.config.spdxLicenseIdentifier);
 
   let packageJson = JSON.parse(fs.readFileSync(`${ bre.config.paths.root }/package.json`, 'utf8'));
   let spdx;
@@ -45,7 +45,7 @@ task(NAME, DESC, async function (args, bre) {
 });
 
 task(TASK_COMPILE, async function (args, bre, runSuper) {
-  let config = bre.config.spdxLicenseIdentifier || CONFIG;
+  let config = Object.assign({}, CONFIG, bre.config.spdxLicenseIdentifier);
 
   if (config.runOnCompile) {
     await bre.run(NAME);
