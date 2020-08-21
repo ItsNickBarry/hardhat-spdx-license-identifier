@@ -26,7 +26,7 @@ task(NAME, DESC, async function (args, bre) {
     spdx = 'UNLICENSED';
   }
 
-  let sources = await bre.run(TASK_COMPILE_GET_RESOLVED_SOURCES);
+  let sources = await bre.run(TASK_COMPILE_GET_RESOLVED_SOURCES, args);
 
   let headerBase = '// SPDX-License-Identifier:';
   let regexp = new RegExp(`(${ headerBase }.*\n*)?`);
