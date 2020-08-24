@@ -29,10 +29,11 @@ spdxLicenseIdentifier: {
   runOnCompile: true,
 }
 ```
-Run the included Buidler task to modify local Solidity source files:
+
+The included Buidler task may be run manually:
 
 ```bash
 yarn run buidler prepend-spdx-license
 ```
 
-Files which do not contain a license identifier will be prepended with one.  Files with a license identifier which does not match that which is specified in `package.json` will be updated.
+Files which do not contain a license identifier will be prepended with one.  Files with a license identifier which does not match that which is specified in `package.json` may be updated, depending on configuration.
