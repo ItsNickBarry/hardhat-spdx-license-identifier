@@ -37,3 +37,7 @@ yarn run buidler prepend-spdx-license
 ```
 
 Files which do not contain a license identifier will be prepended with one.  Files with a license identifier which does not match that which is specified in `package.json` may be updated, depending on configuration.
+
+### TypeScript Support
+
+For TypeScript compatibility, add `'node_modules/buidler-spdx-license-identifier/type-extensions.d.ts'` to the `files` array in `tsconfig.json`.
