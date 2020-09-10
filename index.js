@@ -1,9 +1,9 @@
+const fs = require('fs');
+
 const {
   TASK_COMPILE,
   TASK_COMPILE_GET_RESOLVED_SOURCES,
 } = require('@nomiclabs/buidler/builtin-tasks/task-names');
-
-const fs = require('fs');
 
 const CONFIG = {
   overwrite: false,
@@ -16,21 +16,17 @@ const DESC = 'Prepends SPDX License identifier to local source files';
 task(NAME, DESC, async function (args, bre) {
   let config = Object.assign({}, CONFIG, bre.config.spdxLicenseIdentifier);
 
-  let packageJson = JSON.parse(fs.readFileSync(`${ bre.config.paths.root }/package.json`, 'utf8'));
-  let spdx;
+  let { license } = JSON.parse(fs.readFileSync(`${ bre.config.paths.root }/package.json`, 'utf8'));
 
-  if (packageJson.license) {
-    spdx = packageJson.license;
-  } else {
-    console.log('No license specified in package.json');
-    spdx = 'UNLICENSED';
+  if (!license) {
+    throw ('No license specified in package.json, unable to add SPDX Liense Identifier to sources.');
   }
 
   let sources = await bre.run(TASK_COMPILE_GET_RESOLVED_SOURCES, args);
 
   let headerBase = '// SPDX-License-Identifier:';
   let regexp = new RegExp(`(${ headerBase }.*\n*)?`);
-  let header = `${ headerBase } ${ spdx }\n\n`;
+  let header = `${ headerBase } ${ license }\n\n`;
 
   let count = 0;
 
@@ -41,7 +37,7 @@ task(NAME, DESC, async function (args, bre) {
     }
   });
 
-  console.log(`Prepending SPDX License Identifier to ${ count } sources: ${ spdx }`);
+  console.log(`Prepending SPDX License Identifier to ${ count } sources: ${ license }`);
 });
 
 task(TASK_COMPILE, async function (args, bre, runSuper) {
