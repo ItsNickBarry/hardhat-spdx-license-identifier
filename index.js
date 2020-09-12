@@ -37,7 +37,7 @@ task(NAME, DESC, async function (args, bre) {
     }
   });
 
-  console.log(`Prepending SPDX License Identifier to ${ count } sources: ${ license }`);
+  console.log(`Prepended SPDX License Identifier "${ license }" to ${ count } sources.`);
 });
 
 task(TASK_COMPILE, async function (args, bre, runSuper) {
