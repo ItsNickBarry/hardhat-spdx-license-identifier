@@ -30,7 +30,10 @@ task(NAME, DESC, async function (args, bre) {
 
   let count = 0;
 
-  sources.forEach(function ({ absolutePath, content }) {
+  sources.forEach(function ({ absolutePath }) {
+    // content is read from disk for preprocessor compatibility
+    let content = fs.readFileSync(absolutePath).toString();
+
     if (!content.startsWith(header) && (!content.startsWith(headerBase) || config.overwrite)) {
       fs.writeFileSync(absolutePath, content.replace(regexp, header));
       count++;

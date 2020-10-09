@@ -1,6 +1,6 @@
 {
   "name": "buidler-spdx-license-identifier",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "description": "Prepend local Solidity source files with an SPDX License Identifier",
   "keywords": [
