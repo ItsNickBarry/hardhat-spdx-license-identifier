@@ -2,8 +2,8 @@ const fs = require('fs');
 
 const {
   TASK_COMPILE,
-  TASK_COMPILE_GET_RESOLVED_SOURCES,
-} = require('@nomiclabs/buidler/builtin-tasks/task-names');
+  TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS,
+} = require('hardhat/builtin-tasks/task-names');
 
 const CONFIG = {
   overwrite: false,
@@ -22,7 +22,7 @@ task(NAME, DESC, async function (args, bre) {
     throw ('No license specified in package.json, unable to add SPDX Liense Identifier to sources.');
   }
 
-  let sources = await bre.run(TASK_COMPILE_GET_RESOLVED_SOURCES, args);
+  let sources = await bre.run(TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS, args);
 
   let headerBase = '// SPDX-License-Identifier:';
   let regexp = new RegExp(`(${ headerBase }.*\n*)?`);
@@ -30,7 +30,7 @@ task(NAME, DESC, async function (args, bre) {
 
   let count = 0;
 
-  sources.forEach(function ({ absolutePath }) {
+  sources.forEach(function (absolutePath) {
     // content is read from disk for preprocessor compatibility
     let content = fs.readFileSync(absolutePath).toString();
 

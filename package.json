@@ -1,9 +1,10 @@
 {
-  "name": "buidler-spdx-license-identifier",
-  "version": "1.0.5",
+  "name": "hardhat-spdx-license-identifier",
+  "version": "2.0.0",
   "license": "MIT",
   "description": "Prepend local Solidity source files with an SPDX License Identifier",
   "keywords": [
+    "hardhat",
     "buidler",
     "spdx-license",
     "spdx-licenses",
@@ -15,14 +16,14 @@
     "blockchain",
     "wow"
   ],
-  "repository": "https://github.com/ItsNickBarry/buidler-spdx-license-identifier",
+  "repository": "https://github.com/ItsNickBarry/hardhat-spdx-license-identifier",
   "author": "Nick Barry",
   "main": "index.js",
   "peerDependencies": {
-    "@nomiclabs/buidler": "^1.3.0"
+    "hardhat": "^2.0.0"
   },
   "devDependencies": {
-    "@nomiclabs/buidler": "^1.3.0",
-    "eslint": "^7.0.0"
+    "eslint": "^7.0.0",
+    "hardhat": "^2.0.0"
   }
 }

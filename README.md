@@ -1,19 +1,21 @@
-# Buidler SPDX License Identifer
+# Hardhat SPDX License Identifer
 
-Prepend Solidity source files in Buidler projects with the SPDX License Identifier specified in `package.json`.
+Prepend Solidity source files in Hardhat projects with the SPDX License Identifier specified in `package.json`.
+
+Versions of this plugin prior to `2.0.0` were released as `buidler-spdx-license-identifier`.
 
 ## Installation
 
 ```bash
-yarn add --dev buidler-spdx-license-identifier
+yarn add --dev hardhat-spdx-license-identifier
 ```
 
 ## Usage
 
-Load plugin in Buidler config:
+Load plugin in Hardhat config:
 
 ```javascript
-usePlugin('buidler-spdx-license-identifier');
+require('hardhat-spdx-license-identifier');
 ```
 
 Add configuration under the `spdxLicenseIdentifier` key:
@@ -30,14 +32,10 @@ spdxLicenseIdentifier: {
 }
 ```
 
-The included Buidler task may be run manually:
+The included Hardhat task may be run manually:
 
 ```bash
-yarn run buidler prepend-spdx-license
+yarn run hardhat prepend-spdx-license
 ```
 
 Files which do not contain a license identifier will be prepended with one.  Files with a license identifier which does not match that which is specified in `package.json` may be updated, depending on configuration.
-
-### TypeScript Support
-
-For TypeScript compatibility, add `'node_modules/buidler-spdx-license-identifier/type-extensions.d.ts'` to the `files` array in `tsconfig.json`.
