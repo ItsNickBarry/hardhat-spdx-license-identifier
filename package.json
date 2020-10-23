@@ -19,6 +19,7 @@
   "repository": "https://github.com/ItsNickBarry/hardhat-spdx-license-identifier",
   "author": "Nick Barry",
   "main": "index.js",
+  "types": "index.d.ts",
   "peerDependencies": {
     "hardhat": "^2.0.0"
   },

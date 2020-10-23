@@ -1,21 +1,25 @@
 const fs = require('fs');
+const { extendConfig } = require('hardhat/config');
 
 const {
   TASK_COMPILE,
   TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS,
 } = require('hardhat/builtin-tasks/task-names');
 
-const CONFIG = {
-  overwrite: false,
-  runOnCompile: false,
-};
+extendConfig(function (config, userConfig) {
+  config.spdxLicenseIdentifier = Object.assign(
+    {
+      overwrite: false,
+      runOnCompile: false,
+    },
+    userConfig.spdxLicenseIdentifier
+  );
+});
 
 const NAME = 'prepend-spdx-license';
 const DESC = 'Prepends SPDX License identifier to local source files';
 
 task(NAME, DESC, async function (args, hre) {
-  let config = Object.assign({}, CONFIG, hre.config.spdxLicenseIdentifier);
-
   let { license } = JSON.parse(fs.readFileSync(`${ hre.config.paths.root }/package.json`, 'utf8'));
 
   if (!license) {
@@ -34,7 +38,7 @@ task(NAME, DESC, async function (args, hre) {
     // content is read from disk for preprocessor compatibility
     let content = fs.readFileSync(absolutePath).toString();
 
-    if (!content.startsWith(header) && (!content.startsWith(headerBase) || config.overwrite)) {
+    if (!content.startsWith(header) && (!content.startsWith(headerBase) || hre.config.spdxLicenseIdentifier.overwrite)) {
       fs.writeFileSync(absolutePath, content.replace(regexp, header));
       count++;
     }
@@ -44,9 +48,7 @@ task(NAME, DESC, async function (args, hre) {
 });
 
 task(TASK_COMPILE, async function (args, hre, runSuper) {
-  let config = Object.assign({}, CONFIG, hre.config.spdxLicenseIdentifier);
-
-  if (config.runOnCompile) {
+  if (hre.config.spdxLicenseIdentifier.runOnCompile) {
     await hre.run(NAME);
   }
 
