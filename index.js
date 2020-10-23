@@ -13,16 +13,16 @@ const CONFIG = {
 const NAME = 'prepend-spdx-license';
 const DESC = 'Prepends SPDX License identifier to local source files';
 
-task(NAME, DESC, async function (args, bre) {
-  let config = Object.assign({}, CONFIG, bre.config.spdxLicenseIdentifier);
+task(NAME, DESC, async function (args, hre) {
+  let config = Object.assign({}, CONFIG, hre.config.spdxLicenseIdentifier);
 
-  let { license } = JSON.parse(fs.readFileSync(`${ bre.config.paths.root }/package.json`, 'utf8'));
+  let { license } = JSON.parse(fs.readFileSync(`${ hre.config.paths.root }/package.json`, 'utf8'));
 
   if (!license) {
     throw ('No license specified in package.json, unable to add SPDX Liense Identifier to sources.');
   }
 
-  let sources = await bre.run(TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS, args);
+  let sources = await hre.run(TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS, args);
 
   let headerBase = '// SPDX-License-Identifier:';
   let regexp = new RegExp(`(${ headerBase }.*\n*)?`);
@@ -43,11 +43,11 @@ task(NAME, DESC, async function (args, bre) {
   console.log(`Prepended SPDX License Identifier "${ license }" to ${ count } sources.`);
 });
 
-task(TASK_COMPILE, async function (args, bre, runSuper) {
-  let config = Object.assign({}, CONFIG, bre.config.spdxLicenseIdentifier);
+task(TASK_COMPILE, async function (args, hre, runSuper) {
+  let config = Object.assign({}, CONFIG, hre.config.spdxLicenseIdentifier);
 
   if (config.runOnCompile) {
-    await bre.run(NAME);
+    await hre.run(NAME);
   }
 
   await runSuper();
