@@ -1,6 +1,6 @@
 {
   "name": "hardhat-spdx-license-identifier",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "description": "Prepend local Solidity source files with an SPDX License Identifier",
   "keywords": [
