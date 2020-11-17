@@ -44,7 +44,9 @@ task(NAME, DESC, async function (args, hre) {
     }
   });
 
-  console.log(`Prepended SPDX License Identifier "${ license }" to ${ count } sources.`);
+  if (count > 0) {
+    console.log(`Prepended SPDX License Identifier "${ license }" to ${ count } sources.`);
+  }
 });
 
 task(TASK_COMPILE, async function (args, hre, runSuper) {
