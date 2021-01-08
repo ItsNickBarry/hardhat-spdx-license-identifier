@@ -1,6 +1,8 @@
 const fs = require('fs');
 const { extendConfig } = require('hardhat/config');
 
+const { HardhatPluginError } = require('hardhat/plugins');
+
 const {
   TASK_COMPILE,
   TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS,
@@ -23,7 +25,7 @@ task(NAME, DESC, async function (args, hre) {
   let { license } = JSON.parse(fs.readFileSync(`${ hre.config.paths.root }/package.json`, 'utf8'));
 
   if (!license) {
-    throw 'hardhat-spdx-license-identifier: no license specified in package.json, unable to add SPDX Liense Identifier to sources';
+    throw new HardhatPluginError('no license specified in package.json, unable to add SPDX Liense Identifier to sources');
   }
 
   let sources = await hre.run(TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS, args);
