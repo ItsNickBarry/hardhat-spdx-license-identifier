@@ -2,7 +2,7 @@
 
 Prepend Solidity source files in Hardhat projects with the SPDX License Identifier specified in `package.json`.
 
-Versions of this plugin prior to `2.0.0` were released as `buidler-spdx-license-identifier`.
+> Versions of this plugin prior to `2.0.0` were released as `buidler-spdx-license-identifier`.
 
 ## Installation
 
