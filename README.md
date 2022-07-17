@@ -7,6 +7,8 @@ Prepend Solidity source files in Hardhat projects with the SPDX License Identifi
 ## Installation
 
 ```bash
+npm install --save-dev hardhat-spdx-license-identifier
+# or
 yarn add --dev hardhat-spdx-license-identifier
 ```
 
@@ -35,6 +37,8 @@ spdxLicenseIdentifier: {
 The included Hardhat task may be run manually:
 
 ```bash
+npx hardhat prepend-spdx-license
+# or
 yarn run hardhat prepend-spdx-license
 ```
 
