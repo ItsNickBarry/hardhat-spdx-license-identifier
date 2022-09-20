@@ -1,4 +1,4 @@
-# Hardhat SPDX License Identifer
+# Hardhat SPDX License Identifier
 
 Prepend Solidity source files in Hardhat projects with the SPDX License Identifier specified in `package.json`.
 
