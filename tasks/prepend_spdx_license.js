@@ -9,7 +9,7 @@ task('prepend-spdx-license', 'Prepends SPDX License identifier to local source f
   let { license } = JSON.parse(fs.readFileSync(`${ hre.config.paths.root }/package.json`, 'utf8'));
 
   if (!license) {
-    throw new HardhatPluginError('no license specified in package.json, unable to add SPDX Liense Identifier to sources');
+    throw new HardhatPluginError('no license specified in package.json, unable to add SPDX License Identifier to sources');
   }
 
   let sources = await hre.run(TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS, args);
