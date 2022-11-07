@@ -8,6 +8,8 @@ extendConfig(function (config, userConfig) {
     {
       overwrite: false,
       runOnCompile: false,
+      only: [],
+      except: [],
     },
     userConfig.spdxLicenseIdentifier
   );

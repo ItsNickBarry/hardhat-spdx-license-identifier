@@ -5,6 +5,8 @@ declare module 'hardhat/types/config' {
     spdxLicenseIdentifier?: {
       overwrite?: boolean,
       runOnCompile?: boolean,
+      only?: string[],
+      except?: string[],
     }
   }
 
@@ -12,6 +14,8 @@ declare module 'hardhat/types/config' {
     spdxLicenseIdentifier: {
       overwrite: boolean,
       runOnCompile: boolean,
+      only: string[],
+      except: string[],
     }
   }
 }

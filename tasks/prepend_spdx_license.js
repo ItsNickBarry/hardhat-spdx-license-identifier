@@ -6,6 +6,8 @@ const {
 } = require('hardhat/builtin-tasks/task-names');
 
 task('prepend-spdx-license', 'Prepends SPDX License identifier to local source files', async function (args, hre) {
+  const config = hre.config.spdxLicenseIdentifier;
+
   const { license } = JSON.parse(fs.readFileSync(`${ hre.config.paths.root }/package.json`, 'utf8'));
 
   if (!license) {
@@ -21,6 +23,9 @@ task('prepend-spdx-license', 'Prepends SPDX License identifier to local source f
   let count = 0;
 
   await Promise.all(sourcePaths.map(async (sourcePath) => {
+    if (config.only.length && !config.only.some(m => sourcePath.match(m))) return;
+    if (config.except.length && config.except.some(m => sourcePath.match(m))) return;
+
     // content is read from disk for preprocessor compatibility
     const content = fs.readFileSync(sourcePath).toString();
 
