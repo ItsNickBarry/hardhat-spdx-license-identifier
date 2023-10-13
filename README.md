@@ -2,14 +2,16 @@
 
 Prepend Solidity source files in Hardhat projects with the SPDX License Identifier specified in `package.json`.
 
+> Versions of this plugin prior to `3.0.0` were released as `hardhat-spdx-license-identifier`, outside of the `@solidstate` namespace.
+
 > Versions of this plugin prior to `2.0.0` were released as `buidler-spdx-license-identifier`.
 
 ## Installation
 
 ```bash
-npm install --save-dev hardhat-spdx-license-identifier
+npm install --save-dev @solidstate/hardhat-spdx-license-identifier
 # or
-yarn add --dev hardhat-spdx-license-identifier
+yarn add --dev @solidstate/hardhat-spdx-license-identifier
 ```
 
 ## Usage
@@ -17,7 +19,7 @@ yarn add --dev hardhat-spdx-license-identifier
 Load plugin in Hardhat config:
 
 ```javascript
-require('hardhat-spdx-license-identifier');
+require('@solidstate/hardhat-spdx-license-identifier');
 ```
 
 Add configuration under the `spdxLicenseIdentifier` key:

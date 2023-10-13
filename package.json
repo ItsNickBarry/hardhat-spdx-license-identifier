@@ -1,6 +1,6 @@
 {
-  "name": "hardhat-spdx-license-identifier",
-  "version": "2.1.0",
+  "name": "@solidstate/hardhat-spdx-license-identifier",
+  "version": "3.0.0",
   "license": "MIT",
   "description": "Prepend local Solidity source files with an SPDX License Identifier",
   "keywords": [
@@ -16,7 +16,7 @@
     "blockchain",
     "wow"
   ],
-  "repository": "https://github.com/ItsNickBarry/hardhat-spdx-license-identifier",
+  "repository": "github:solidstate-network/hardhat-spdx-license-identifier",
   "author": "Nick Barry",
   "main": "index.js",
   "types": "index.d.ts",
@@ -26,5 +26,8 @@
   "devDependencies": {
     "eslint": "^7.0.0",
     "hardhat": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
