@@ -18,7 +18,7 @@ task('prepend-spdx-license', 'Prepends SPDX License identifier to local source f
 
   const headerBase = '// SPDX-License-Identifier:';
   const regexp = new RegExp(`(${ headerBase }.*\n*)?`);
-  const header = `${ headerBase } ${ license }\n\n`;
+  const header = `${ headerBase } ${ license }\n`;
 
   let count = 0;
 
@@ -29,10 +29,16 @@ task('prepend-spdx-license', 'Prepends SPDX License identifier to local source f
     // content is read from disk for preprocessor compatibility
     const content = fs.readFileSync(sourcePath).toString();
 
-    if (!content.startsWith(header) && (!content.startsWith(headerBase) || hre.config.spdxLicenseIdentifier.overwrite)) {
-      fs.writeFileSync(sourcePath, content.replace(regexp, header));
-      count++;
-    }
+    const partialMatch = content.startsWith(headerBase);
+    const exactMatch = content.startsWith(header);
+
+    if (exactMatch) return;
+    if (partialMatch && !hre.config.spdxLicenseIdentifier.overwrite) return;
+
+    const padding = partialMatch ? '' : '\n';
+
+    fs.writeFileSync(sourcePath, content.replace(regexp, header + padding));
+    count++;
   }));
 
   if (count > 0) {
