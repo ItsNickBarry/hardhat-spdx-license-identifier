@@ -11,6 +11,6 @@ extendConfig(function (config, userConfig) {
       only: [],
       except: [],
     },
-    userConfig.spdxLicenseIdentifier
+    userConfig.spdxLicenseIdentifier,
   );
 });
