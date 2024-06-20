@@ -6,5 +6,5 @@ task(TASK_COMPILE, async function (args, hre, runSuper) {
     await hre.run('prepend-spdx-license');
   }
 
-  await runSuper();
+  await runSuper(args);
 });
