@@ -21,6 +21,7 @@ task(
       );
     }
 
+    // TODO: forward args from compile task if applicable
     const sourcePaths: string[] = await hre.run(
       TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS,
       args,
