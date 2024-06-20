@@ -1,3 +1,6 @@
+import './tasks/compile';
+import './tasks/prepend_spdx_license';
+import { extendConfig } from 'hardhat/config';
 import 'hardhat/types/config';
 
 declare module 'hardhat/types/config' {
@@ -19,3 +22,15 @@ declare module 'hardhat/types/config' {
     };
   }
 }
+
+extendConfig(function (config, userConfig) {
+  config.spdxLicenseIdentifier = Object.assign(
+    {
+      overwrite: false,
+      runOnCompile: false,
+      only: [],
+      except: [],
+    },
+    userConfig.spdxLicenseIdentifier,
+  );
+});
