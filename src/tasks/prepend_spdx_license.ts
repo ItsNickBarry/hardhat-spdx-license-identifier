@@ -1,9 +1,8 @@
-const fs = require('fs');
-const { HardhatPluginError } = require('hardhat/plugins');
-
-const {
-  TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS,
-} = require('hardhat/builtin-tasks/task-names');
+import { name as pluginName } from '../../package.json';
+import fs from 'fs';
+import { TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS } from 'hardhat/builtin-tasks/task-names';
+import { task } from 'hardhat/config';
+import { HardhatPluginError } from 'hardhat/plugins';
 
 task(
   'prepend-spdx-license',
@@ -17,11 +16,12 @@ task(
 
     if (!license) {
       throw new HardhatPluginError(
+        pluginName,
         'no license specified in package.json, unable to add SPDX License Identifier to sources',
       );
     }
 
-    const sourcePaths = await hre.run(
+    const sourcePaths: string[] = await hre.run(
       TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS,
       args,
     );

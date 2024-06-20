@@ -1,4 +1,5 @@
-const { TASK_COMPILE } = require('hardhat/builtin-tasks/task-names');
+import { TASK_COMPILE } from 'hardhat/builtin-tasks/task-names';
+import { task } from 'hardhat/config';
 
 task(TASK_COMPILE, async function (args, hre, runSuper) {
   if (hre.config.spdxLicenseIdentifier.runOnCompile) {
