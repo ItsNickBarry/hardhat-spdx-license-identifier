@@ -23,7 +23,7 @@ declare module 'hardhat/types/config' {
   }
 }
 
-extendConfig(function (config, userConfig) {
+extendConfig((config, userConfig) => {
   config.spdxLicenseIdentifier = Object.assign(
     {
       overwrite: false,

@@ -7,7 +7,7 @@ import { HardhatPluginError } from 'hardhat/plugins';
 task(
   'prepend-spdx-license',
   'Prepends SPDX License identifier to local source files',
-  async function (args, hre) {
+  async (args, hre) => {
     const config = hre.config.spdxLicenseIdentifier;
 
     const { license } = JSON.parse(
